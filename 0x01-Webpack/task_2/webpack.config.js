@@ -1,0 +1,22 @@
+const path = require('path');
+
+module.exports = {
+  performance: {
+    maxAssetSize: 600000,
+    maxEntrypointSize: 600000,
+  },
+  entry: './js/dashboard_main.js',
+  output: {
+    path: path.resolve(__dirname, 'public'),
+    filename: 'bundle.js'
+  },
+  mode: "production",
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader']
+      }
+    ]
+  },
+}
