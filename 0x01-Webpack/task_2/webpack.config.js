@@ -2,8 +2,13 @@ const path = require('path');
 
 module.exports = {
   performance: {
-    maxAssetSize: 600000,
-    maxEntrypointSize: 600000,
+    hints: false
+  },
+  optimization: {
+    splitChunks: {
+      minSize: 10000,
+      maxSize: 250000,
+    }
   },
   entry: './js/dashboard_main.js',
   output: {
@@ -16,7 +21,11 @@ module.exports = {
       {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader']
-      }
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        type: 'asset/resource',
+      },
     ]
   },
 }
