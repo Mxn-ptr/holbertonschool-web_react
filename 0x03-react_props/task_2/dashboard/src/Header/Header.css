@@ -1,0 +1,11 @@
+.App-header {
+	display: flex;
+	align-items: center;
+	color: #e0354b;
+	font-size: 1.5rem;
+	border-bottom: 0.2rem solid #e0354b;
+}
+
+.App-header > .logo {
+	width: 200px;
+}
