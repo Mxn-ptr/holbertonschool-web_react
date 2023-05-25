@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 function CourseListRow(props) {
   let tr;
   const style = {
-    headerStyle: { backgroundColor: '#f5f5f5ab' },
-    bodyStyle: { backgroundColor: '#deb5b545'}, 
+    bodyStyle: { backgroundColor: '#f5f5f5ab' },
+    headerStyle: { backgroundColor: '#deb5b545'}, 
   };
 
   if (!props.isHeader) {
@@ -30,7 +30,7 @@ function CourseListRow(props) {
     }
   }
   return (
-    <tr style={ props.isHeader ? style.headerStyle : style.bodyStyle }>{tr}</tr>
+    <tr style={ props.isHeader ? style.headerStyle : style.bodyStyle}>{tr}</tr>
   )
 }
 
