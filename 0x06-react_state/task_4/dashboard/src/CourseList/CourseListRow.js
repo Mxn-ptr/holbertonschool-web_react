@@ -18,7 +18,7 @@ function CourseListRow(props) {
     tr = (
       <>
         <td className={checked ? css(styles.rowChecked): ''}><input type="checkbox" onClick={handleCheck} />{props.textFirstCell}</td>
-        <td>{props.textSecondCell}</td>
+        <td className={checked ? css(styles.rowChecked): ''}>{props.textSecondCell}</td>
       </>
     )
   } else {
