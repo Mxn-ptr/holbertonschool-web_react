@@ -82,14 +82,12 @@ describe('React tests', () => {
     });
 
     it('verify that after calling handleDisplayDrawer the state is now true', () => {
-      const instance = wrapper.instance();
-      instance.handleDisplayDrawer();
+      wrapper.instance().handleDisplayDrawer();
       expect(wrapper.state().displayDrawer).toBe(true);
     });
 
     it('verify that after calling handleHideDrawer the state is now false', () => {
-      const instance = wrapper.instance();
-      instance.handleHideDrawer();
+      wrapper.instance().handleHideDrawer();
       expect(wrapper.state().displayDrawer).toBe(false);
     });
   })
