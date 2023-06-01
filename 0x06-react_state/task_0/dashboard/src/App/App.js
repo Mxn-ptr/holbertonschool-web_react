@@ -16,7 +16,7 @@ class App extends React.Component{
     super(props);
     this.state = {
       displayDrawer: false,
-    }
+    };
     this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
     this.handleHideDrawer = this.handleHideDrawer.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
@@ -58,11 +58,12 @@ class App extends React.Component{
       { id: 3, type: 'urgent', html: { __html: getLatestNotification() }},
     ];
     const { isLoggedIn } = this.props;
+    const { displayDrawer } = this.state;
     return (
       <React.Fragment>
         <Notifications 
           listNotifications={listNotifications}
-          displayDrawer={this.state.displayDrawer}
+          displayDrawer={displayDrawer}
           handleDisplayDrawer={this.handleDisplayDrawer}
           handleHideDrawer={this.handleHideDrawer}/>
         <div className="App">
