@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --maxWorkers 1",
     "test-watch": "jest --watch",
     "start": "webpack-dev-server --mode development --config config/webpack.config.js"
   },
