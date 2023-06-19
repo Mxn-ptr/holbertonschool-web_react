@@ -1,6 +1,8 @@
 import { LOGIN, LOGOUT, DISPLAY_NOTIFICATION_DRAWER, HIDE_NOTIFICATION_DRAWER, LOGIN_SUCCESS, LOGIN_FAILURE } from "./uiActionTypes";
 import { login, logout, displayNotificationDrawer, hideNotificationDrawer, loginSuccess, loginFailure, loginRequest } from "./uiActionCreators";
 import createMockStore from "redux-mock-store";
+import thunk from "redux-thunk";
+import fetchMock from 'fetch-mock';
 
 describe('uiActionsCreator test', () => {
   it('Test login function with correct output', () => {
@@ -38,4 +40,25 @@ describe('uiActionsCreator test', () => {
     };
     expect(result).toEqual(expected_result);
   });
+
+  it('Test the API with good response', () => {
+    const mockStore = createMockStore([thunk]);
+    const store = mockStore({});
+    const email = 'test@gmail.com';
+    const password = 'test';
+    const expectedActions = [
+      { type: LOGIN,
+          user: {
+              email,
+              password
+          }
+      },
+      { type: LOGIN_SUCCESS },
+    ];
+    fetchMock.get('http://localhost:8080/login-success.json', 200);
+
+    return store.dispatch(loginRequest(email, password)).then(() => {
+      expect(store.getActions()).toEqual(expectedActions);
+    });
+  })
 });

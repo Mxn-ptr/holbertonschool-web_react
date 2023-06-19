@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, DISPLAY_NOTIFICATION_DRAWER, HIDE_NOTIFICATION_DRAWER } from "./uiActionTypes";
+import { LOGIN, LOGOUT, DISPLAY_NOTIFICATION_DRAWER, HIDE_NOTIFICATION_DRAWER, LOGIN_SUCCESS, LOGIN_FAILURE } from "./uiActionTypes";
 
 export const login = (email, password) => {
   return {
@@ -41,17 +41,19 @@ export const loginFailure = () => {
 };
 
 export const loginRequest = (email, password) => {
-  dispatch(login(email, password));
-  let url = '../../dist/login-success.json';
-  fetch(url)
-  .then(res => {
-    if (res.ok) {
-      dispatch(loginSuccess());
-    } else {
+  return function(dispatch) {
+    dispatch(login(email, password));
+    let url = 'http://localhost:8080/login-success.json';
+    return fetch(url)
+    .then((res) => {
+      if (res.ok) {
+        dispatch(loginSuccess());
+      } else {
+        dispatch(loginFailure());
+      }
+    })
+    .catch(() => {
       dispatch(loginFailure());
-    }
-  })
-  .catch(() => {
-    dispatch(loginFailure());
-  });
+    })
+  };
 };
