@@ -60,5 +60,28 @@ describe('uiActionsCreator test', () => {
     return store.dispatch(loginRequest(email, password)).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
     });
+
+  });
+
+  it('Test the API with wrong response', () => {
+    fetchMock.restore()
+    const mockStore = createMockStore([thunk]);
+    const store = mockStore({});
+    const email = 'test@gmail.com';
+    const password = 'test';
+    const expectedActions = [
+      { type: LOGIN,
+          user: {
+              email,
+              password
+          }
+      },
+      { type: LOGIN_FAILURE },
+    ];
+    fetchMock.get('http://localhost:8080/login-success.json', 500);
+
+    return store.dispatch(loginRequest(email, password)).then(() => {
+      expect(store.getActions()).toEqual(expectedActions);
+    });
   })
 });
